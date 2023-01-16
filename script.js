@@ -90,7 +90,37 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  window.alert("Passwords must be of a length of between 10 and 64 characters. They can contain upper and lower case letters as well as numbers and special characters.");
+  const passwordLength = prompt("How long do you want your password to be? (10 -  64 characters");
+  const passwordUpper = prompt("Do you want your password to contain upper case letters?\nEnter yes or no.");
+  const passwordLower = prompt("Do you want your password to contain lower case letters?\nEnter yes or no.");
+  const passwordNumber = prompt("Do you want your password to contain numbers?\nEnter yes or no.");
+  const passwordChar = prompt("Do you want your password to contain special characters?\nEnter yes or no.");
+  // Create array to store input form promts to display in confirmation alert
+  let passwordAlert = [];
+  // Create array to store input from prompts.
+  let passwordOptions = [passwordLength];
 
+  // If input has been entered, store it in array
+  if (passwordUpper.toLowerCase() === "yes") {
+    passwordAlert.push(" Upper Case Letters");
+    passwordOptions.push(passwordUpper);
+  }
+  if (passwordLower.toLowerCase() === "yes") {
+    passwordAlert.push(" Lower Case Letters");
+    passwordOptions.push(passwordUpper);
+  }
+  if (passwordNumber.toLowerCase() === "yes") {
+    passwordAlert.push(" Numbers");
+    passwordOptions.push(passwordUpper);
+  }
+  if (passwordChar.toLowerCase() === "yes") {
+    passwordAlert.push(" Special Characters");
+    passwordOptions.push(passwordUpper);
+  }
+
+  alert("Your password will be " + passwordLength + " characters long. It will contain" + passwordAlert);
+  return passwordOptions;
 }
 
 // Function for getting a random element from an array
@@ -100,7 +130,7 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-
+  getPasswordOptions();
 }
 
 // Get references to the #generate element
