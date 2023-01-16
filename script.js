@@ -91,7 +91,7 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
   window.alert("Passwords must be of a length of between 10 and 64 characters. They can contain upper and lower case letters as well as numbers and special characters.");
-  const passwordLength = prompt("How long do you want your password to be? (10 -  64 characters");
+  const passwordLength = Number(prompt("How long do you want your password to be? (10 -  64 characters"));
   const passwordUpper = prompt("Do you want your password to contain upper case letters?\nEnter yes or no.");
   const passwordLower = prompt("Do you want your password to contain lower case letters?\nEnter yes or no.");
   const passwordNumber = prompt("Do you want your password to contain numbers?\nEnter yes or no.");
@@ -104,34 +104,61 @@ function getPasswordOptions() {
   // If input has been entered, store it in array
   if (passwordUpper.toLowerCase() === "yes") {
     passwordAlert.push(" Upper Case Letters");
-    passwordOptions.push(passwordUpper);
+    passwordOptions.push(passwordUpper.toLowerCase);
   }
   if (passwordLower.toLowerCase() === "yes") {
     passwordAlert.push(" Lower Case Letters");
-    passwordOptions.push(passwordUpper);
+    passwordOptions.push(passwordLower.toLowerCase);
   }
   if (passwordNumber.toLowerCase() === "yes") {
     passwordAlert.push(" Numbers");
-    passwordOptions.push(passwordUpper);
+    passwordOptions.push(passwordNumber.toLowerCase);
   }
   if (passwordChar.toLowerCase() === "yes") {
     passwordAlert.push(" Special Characters");
-    passwordOptions.push(passwordUpper);
+    passwordOptions.push(passwordChar.toLowerCase);
   }
-
+// Disply input options confirmation
   alert("Your password will be " + passwordLength + " characters long. It will contain" + passwordAlert);
   return passwordOptions;
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  let randomIndex = Math.floor(Math.random() * arr.length);
+  let character = arr[randomIndex];
+  return character;
 }
 
 // Function to generate password with user input
 function generatePassword() {
-  getPasswordOptions();
+  let passwordOptions = getPasswordOptions();
+  let upper = false, lower = false, number = false, charact = false;
+  let password = "";
+  
+  for (let i = 0; i < passwordOptions[0]; i++) {
+    let arrayType = [upperCasedCharacters, lowerCasedCharacters, numericCharacters, specialCharacters];
+    let randomIndex = Math.floor(Math.random() * arrayType.length);
+
+    let passwordCharacter = getRandom(arrayType[randomIndex]);
+    password.push(character);
+    // Check if after loop execution all passwords options are satisfied
+    if (passwordOptions[i + 1] === 'yes') {
+      upper = true;
+    }
+    if (passwordOptions[i + 2] === 'yes') {
+      upper = true;
+    }
+    if (passwordOptions[i + 3] === 'yes') {
+      upper = true;
+    }
+    if (passwordOptions[i + 4] === 'yes') {
+      upper = true;
+    }
+  }
+    
 }
+  
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
