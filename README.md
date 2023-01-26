@@ -1,9 +1,10 @@
 # password-generator
 It generates a random password based on certain criteria.
+Link to deploy application:  https://pedrobe9.github.io/password-generator/
 
 
 ## Usage
-click the Generate Passord button to start the process of generating the password. It will prompt the user to introduce information to generate the password: length of password and type of charactoers to include. If information introduced by user not the appropriate to generate the password, it will  prompt again until apropriate information in introduced.
+click the Generate Passord button to start the process of generating the password. It will prompt the user to introduce information to generate the password: length of password and type of charactoers to include. There must be at least one character type. If information introduced by user not the appropriate to generate the password, it will  prompt again until apropriate information in introduced.
 
 
 ![Screechot of password generator](assets/screenshot-password-generator.png)

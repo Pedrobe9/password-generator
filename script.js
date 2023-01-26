@@ -89,62 +89,79 @@ var upperCasedCharacters = [
 ];
 
 // Function to prompt user for password options
-function getPasswordOptions() {  
-  // Make options lower case to introduce case insensitivity and remove whitespace
-  window.alert("Passwords must be of a length of between 10 and 64 characters. They can contain upper and lower case letters as well as numbers and special characters.");
-  // use of while loop, https://www.w3schools.com/js/js_loop_while.asp
-  // while loop will repeate until condition satisfied
-  let passwordLength;
-  do {
-    passwordLength = Number(prompt("How long do you want your password to be? (10 -  64 characters"));
-  } 
-  while (isNaN(passwordLength) || passwordLength < 10 || passwordLength > 64);
-  let passwordUpper;
-  do {
-    passwordUpper = (prompt("Do you want your password to contain upper case letters?\nEnter yes or no.")).toLowerCase().trim();
-  }
-  while (passwordUpper !== 'yes' && passwordUpper !== 'no');
-  let passwordLower;
-  do {
-    passwordLower = (prompt("Do you want your password to contain lower case letters?\nEnter yes or no.")).toLowerCase().trim();
-  }
-  while (passwordLower !== 'yes' && passwordLower !== 'no');
-  let passwordNumber;
-  do {
-    passwordNumber = (prompt("Do you want your password to contain numbers?\nEnter yes or no.")).toLowerCase().trim();
-  }
-  while (passwordNumber !== 'yes' && passwordNumber !== 'no');
-  let passwordChar;
-  do {
-    passwordChar = (prompt("Do you want your password to contain special characters?\nEnter yes or no.")).toLowerCase().trim();
-  }
-  while (passwordChar !== 'yes' && passwordChar !== 'no');
-
-
-  // Create array to store input form promts to display in confirmation alert
+function getPasswordOptions() {
+  //Declare variables in function
+  let passwordOptions;
+  let passwordLength = 0;
+  // Create array to store input fromm promts to display in confirmation alert
   let passwordAlert = [];
-  // Create array to store input from prompts.
-  let passwordOptions = [passwordLength];
+  let passwordUpper = "";
+  let passwordLower = "";
+  let passwordNumber = "";
+  let passwordChar = "";
 
-  // If input has been entered, store it in array
+  do {
+    // Make options lower case to introduce case insensitivity and remove whitespace
+    window.alert("Passwords must be of a length of between 10 and 64 characters. They can contain upper and lower case letters as well as numbers and special characters.");
+    // use of while loop, https://www.w3schools.com/js/js_loop_while.asp
+    // while loop will repeate until condition satisfied
+    do {
+      passwordLength = Number(prompt("How long do you want your password to be? (10 -  64 characters"));
+    }
+    while (isNaN(passwordLength) || passwordLength < 10 || passwordLength > 64);
 
-  if (passwordUpper === "yes") {
-    passwordAlert.push(" Upper Case Letters");
-    passwordOptions.push(upperCasedCharacters);
+    do {
+      passwordUpper = (prompt("Do you want your password to contain upper case letters?\nEnter yes or no.")).toLowerCase().trim();
+    }
+    while (passwordUpper !== 'yes' && passwordUpper !== 'no');
+
+    do {
+      passwordLower = (prompt("Do you want your password to contain lower case letters?\nEnter yes or no.")).toLowerCase().trim();
+    }
+    while (passwordLower !== 'yes' && passwordLower !== 'no');
+
+    do {
+      passwordNumber = (prompt("Do you want your password to contain numbers?\nEnter yes or no.")).toLowerCase().trim();
+    }
+    while (passwordNumber !== 'yes' && passwordNumber !== 'no');
+
+    do {
+      passwordChar = (prompt("Do you want your password to contain special characters?\nEnter yes or no.")).toLowerCase().trim();
+    }
+    while (passwordChar !== 'yes' && passwordChar !== 'no');
+
+    // Create array to store input from prompts.
+    passwordOptions = [passwordLength];
+
+    // If input has been entered, store it in array
+    if (passwordUpper === "yes") {
+      passwordAlert.push(" Upper Case Letters");
+      passwordOptions.push(upperCasedCharacters);
+    }
+    if (passwordLower === "yes") {
+      passwordAlert.push(" Lower Case Letters");
+      passwordOptions.push(lowerCasedCharacters);
+    }
+    if (passwordNumber === "yes") {
+      passwordAlert.push(" Numbers");
+      passwordOptions.push(numericCharacters);
+    }
+    if (passwordChar === "yes") {
+      passwordAlert.push(" Special Characters");
+      passwordOptions.push(specialCharacters);
+    }
+
+    // Check there is at least one option selected
+    if (passwordOptions.length <= 1) {
+      passwordOptions = [];
+      console.log("passwordOptions after checking: ", passwordOptions);
+      alert("You have answered no to all options. At least one character type must be selected. Try again.");
+    }
   }
-  if (passwordLower === "yes") {
-    passwordAlert.push(" Lower Case Letters");
-    passwordOptions.push(lowerCasedCharacters);
-  }
-  if (passwordNumber === "yes") {
-    passwordAlert.push(" Numbers");
-    passwordOptions.push(numericCharacters);
-  }
-  if (passwordChar === "yes") {
-    passwordAlert.push(" Special Characters");
-    passwordOptions.push(specialCharacters);
-  }
-// Disply input options confirmation
+  while (passwordOptions.length <= 1);
+
+
+  // Disply input options confirmation
   alert("Your password will be " + passwordLength + " characters long. It will contain" + passwordAlert);
   return passwordOptions;
 }
@@ -174,9 +191,9 @@ function passwordGenerator(passwordOptions) {
 function generatePassword() {
   let passwordOptions = getPasswordOptions();
   let password = passwordGenerator(passwordOptions);
-  return password; 
-  }
-   
+  return password;
+}
+
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
